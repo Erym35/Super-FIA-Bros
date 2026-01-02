@@ -5,6 +5,7 @@ Il progetto è configurato per funzionare su Windows 11, superando le limitazion
 
 Prerequisiti
 Prima di configurare l'ambiente virtuale, assicurati di avere i seguenti componenti installati nel sistema:
+
 1 Visual Studio Build Tools
   Necessario per compilare i componenti C++ dell'emulatore.
   Durante l'installazione, selezionare il carico di lavoro: "Sviluppo desktop con C++".
