@@ -14,10 +14,10 @@ Prima di configurare l'ambiente virtuale, assicurati di avere i seguenti compone
   Durante l'installazione, selezionare il carico di lavoro: "Sviluppo desktop con C++".
   Python 3.11.x
   
-    Le versioni più recenti (es. 3.12/3.13) non sono compatibili con nes-py.
-    Si consiglia di installarlo in un percorso semplice (es. C:\Python311)
-    PowerShell Execution Policy
-    Abilitare l'esecuzione degli script digitando in PowerShell (Amministratore):
+  Le versioni più recenti (es. 3.12/3.13) non sono compatibili con nes-py.
+  Si consiglia di installarlo in un percorso semplice (es. C:\Python311)
+  PowerShell Execution Policy
+  Abilitare l'esecuzione degli script digitando in PowerShell (Amministratore):
     
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
@@ -29,13 +29,14 @@ Segui questi passaggi per ricreare l'ambiente di sviluppo isolato.
    
 Poiché nel sistema potrebbero esserci altre versioni di Python, forziamo l'uso di Python 3.11.
 Sostituisci il percorso con quello della tua installazione.
-  cd C:\Users\nome_utente\Desktop\marioia
-  & "C:\Percorso\A\Python311\python.exe" -m venv mario_311
 
-3. Attivazione
+    cd C:\Users\nome_utente\Desktop\marioia & "C:\Percorso\A\Python311\python.exe" -m venv mario_311
+
+2. Attivazione
    
 Attiva l'ambiente virtuale:
-  .\mario_311\Scripts\activate
+
+    .\mario_311\Scripts\activate
 
 3. Installazione Dipendenze
    
@@ -59,14 +60,13 @@ L'ordine di installazione è critico per evitare conflitti su Windows. Esegui i 
 
 Avvio dell'Ambiente di Sviluppo
 
-  Per lavorare comodamente via browser con i Notebook interattivi:
+  Per lavorare comodamente via browser con i Notebook interattivi, registra il Kernel (per renderlo visibile a Jupyter):
   
-  Registra il Kernel (per renderlo visibile a Jupyter):
-  
-  python -m ipykernel install --user --name=mario_311 --display-name "Python (Mario 3.11)"
+    python -m ipykernel install --user --name=mario_311 --display-name "Python (Mario 3.11)"
 
-Avvia Jupyter Lab:
-  python -m jupyterlab
+  Avvia Jupyter Lab:
+            
+    python -m jupyterlab
 
 Struttura del Training
   Una volta aperto Jupyter Lab, crea un nuovo notebook selezionando il kernel Python (Mario   3.11). Il flusso di lavoro consigliato è diviso in 4 celle logiche:
@@ -85,8 +85,7 @@ Struttura del Training
 
 Training Loop: 
 
-  Comando model.learn(total_timesteps=1000000).
-  Salvataggio periodico dei checkpoint.
+    model.learn(total_timesteps=1000000). //Salvataggio periodico dei checkpoint.
 
 Monitoraggio Training (TensorBoard)
 
@@ -95,7 +94,7 @@ Monitoraggio Training (TensorBoard)
   Attiva l'ambiente virtuale (come al punto 2 dell'installazione).
   Esegui il comando puntando alla cartella dei log:
 
-tensorboard --logdir=./logs/
+    tensorboard --logdir=./logs/
 
   Apri il browser all'indirizzo che apparirà (solitamente http://localhost:6006).
 
