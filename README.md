@@ -38,14 +38,11 @@ I dettagli tecnici e le istruzioni di esecuzione sono disponibili nella cartella
 * Evoluzione di pesi e topologia della rete neurale
 * Fitness basata sulla distanza percorsa (x_pos)
 * Speciazione, elitismo e stagnazione configurati esplicitamente
+* Configurazione potenzialmente estendibile a più livelli
+
+Nel contesto di questo progetto, la pipeline è stata integrata e valutata sul solo livello 1-1 di Super Mario Bros.
 
 I dettagli tecnici e le istruzioni di esecuzione sono disponibili nella cartella `notebooks/IA_2` (branch `ia_2`).
-
----
-
-## ℹ️ Nota sugli algoritmi
-
-Gli algoritmi adottati (PPO e NEAT) non sono trattati direttamente nel programma del corso, ma rappresentano un’estensione coerente dei concetti fondamentali affrontati, quali agente in ambiente sequenziale, funzione di prestazione (reward/fitness), esplorazione e valutazione sperimentale con analisi dei trade-off.
 
 ---
 
