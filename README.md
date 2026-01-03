@@ -132,7 +132,7 @@ model.learn(total_timesteps=1000000)
 
 ---
 
-## 📈 Monitoraggio Training (TensorBoard)
+## 📈 TensorBoard
 
 Per visualizzare i grafici di apprendimento (aumento del Reward, diminuzione della Loss, ecc.) in tempo reale, mentre L'IA si allena:
 
