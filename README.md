@@ -6,7 +6,6 @@ Questo progetto implementa un agente di **Reinforcement Learning (RL)** capace d
 
 Il progetto è configurato per funzionare su **Windows 11**, superando le limitazioni di compatibilità delle librerie `nes-py` e `gym` tramite un ambiente **Python 3.11** specifico.
 
----
 
 ## ⚙️ Prerequisiti
 
