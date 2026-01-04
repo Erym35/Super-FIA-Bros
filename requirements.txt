@@ -1,0 +1,7 @@
+gym-super-mario-bros==7.4.0
+nes-py==8.2.1
+neat-python==0.92
+opencv-python==4.8.0.76
+numpy==1.26.0
+matplotlib==3.8.0
+graphviz==0.20.1
