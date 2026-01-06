@@ -1,0 +1,49 @@
+[NEAT]
+fitness_criterion     = max
+fitness_threshold     = 3200
+pop_size              = 20
+reset_on_extinction   = False
+
+[DefaultGenome]
+# Node activation options
+activation_default      = sigmoid
+activation_mutate_rate  = 0.0
+activation_options      = sigmoid
+
+# Node aggregation options
+aggregation_default     = sum
+aggregation_mutate_rate = 0.0
+aggregation_options     = sum
+
+# Node bias options
+bias_init_mean          = 0.0
+bias_init_stdev         = 1.0
+bias_max_value          = 30.0
+bias_min_value          = -30.0
+bias_mutate_power       = 0.5
+bias_mutate_rate        = 0.7
+bias_replace_rate       = 0.1
+
+# Genome compatibility options
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+# Connection add/remove rates
+conn_add_prob           = 0.5
+conn_delete_prob        = 0.5
+
+# Connection enable options
+enabled_default         = True
+enabled_mutate_rate     = 0.01
+
+[DefaultSpeciesSet]
+compatibility_threshold = 3.0
+
+[DefaultStagnation]
+species_fitness_func = max
+max_stagnation       = 20
+species_elitism      = 2
+
+[DefaultReproduction]
+elitism            = 2
+survival_threshold = 0.2
