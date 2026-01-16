@@ -4,14 +4,16 @@ from nes_py.wrappers import JoypadSpace
 from gym_super_mario_bros.actions import SIMPLE_MOVEMENT
 import cv2
 import os
+import multiprocessing as mp
 
 class Train:
     def __init__(self, generations, parallel, level):
         self.generations = generations
         self.level = level
+        self.par = parallel
         self.actions = SIMPLE_MOVEMENT
 
-    def _run_single_episode(self, genome, config):
+    def _fitness_func(self, genome, config, queue):
         env = gym_super_mario_bros.make('SuperMarioBros-'+self.level+'-v0')
         env = JoypadSpace(env, self.actions)
         state = env.reset()
@@ -26,13 +28,27 @@ class Train:
             output = net.activate(state)
             action = output.index(max(output))
             state, reward, done, info = env.step(action)
-            
+        
         env.close()
-        return info['x_pos']
+        queue.put((genome.key, info['x_pos']))
 
     def _eval_genomes(self, genomes, config):
-        for genome_id, genome in genomes:
-            genome.fitness = self._run_single_episode(genome, config)
+        for i in range(0, len(genomes), self.par):
+            output = mp.Queue()
+            processes = []
+            for genome_id, genome in genomes[i:i+self.par]:
+                p = mp.Process(target=self._fitness_func, args=(genome, config, output))
+                p.start()
+                processes.append(p)
+            
+            for p in processes:
+                p.join()
+                
+            results = [output.get() for _ in processes]
+            for genome_id, genome in genomes[i:i+self.par]:
+                for key, fitness in results:
+                    if key == genome_id:
+                        genome.fitness = fitness
 
     def _run(self, config_file):
         config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
