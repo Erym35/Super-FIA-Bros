@@ -1,6 +1,7 @@
 import os
 import warnings
 # Suppress all Gym/Deprecation warnings aggressively
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore")
 warnings.simplefilter("ignore")
 import logging
@@ -74,7 +75,8 @@ class Train:
                     else:
                         old = info['x_pos']
                         
-            fitness = -1 if info['x_pos'] <= 40 else info['x_pos']
+            x_pos = int(info['x_pos'])
+            fitness = -1 if x_pos <= 40 else x_pos
             
             if fitness > 315: 
                 self._check_and_save_best(fitness, info.get('actions', []))
@@ -138,17 +140,27 @@ class Train:
             results_map = {k: (v, s, w) for k, v, s, w in results}
 
             for genome in batch:
+                if genome.key not in results_map:
+                    print(f"Warning: Genome {genome.key} missing from results! Assigning default fitness.")
+                    genome.fitness = -1.0
+                    continue
+                
                 fitness, score, did_win = results_map[genome.key]
-                genome.fitness = fitness
+                if fitness is None or not isinstance(fitness, (int, float)):
+                    print(f"Warning: Genome {genome.key} has invalid fitness {fitness}. Assigning -1.0.")
+                    genome.fitness = -1.0
+                else:
+                    genome.fitness = fitness
+                
                 if did_win: gen_wins += 1
                 gen_total_score += score
-                if self.best_genome is None or fitness > self.best_genome.fitness:
+                if self.best_genome is None or (genome.fitness is not None and genome.fitness > self.best_genome.fitness):
                     self.best_genome = copy.deepcopy(genome)
-                print(f"Genome {genome.key}: Fit={fitness} | Score={score} | Win={'YES' if did_win else 'NO'}")
+                print(f"Genome {genome.key}: Fit={genome.fitness} | Score={score} | Win={'YES' if did_win else 'NO'}")
 
         win_rate = (gen_wins / total_genomes) * 100
         avg_score = gen_total_score / total_genomes
-        print(f"📊 GENERATION STATS 📊 - Win Rate {win_rate:.2f}%")
+        print(f"📊 GENERATION STATS 📊 - Win Rate {win_rate:.2f}% | Avg Score {avg_score:.2f}")
 
     def _run(self, config_file, n):
         config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
