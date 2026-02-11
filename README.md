@@ -10,7 +10,7 @@ Il progetto studia il comportamento di un **agente intelligente** che, a partire
 
 ## 🎯 Obiettivo
 
-L’obiettivo del progetto è la realizzazione di un agente in grado di **completare il livello 1-1 di Super Mario Bros**, confrontando due pipeline algoritmiche differenti e analizzandone:
+Realizzare un agente in grado di **completare il livello 1-1 di Super Mario Bros**, confrontando due pipeline algoritmiche differenti e analizzandone:
 
 * prestazioni
 * stabilità dell’apprendimento
@@ -21,28 +21,35 @@ L’obiettivo del progetto è la realizzazione di un agente in grado di **comple
 
 ## 🧠 Pipeline implementate
 
-### Pipeline 1 – Deep Reinforcement Learning (PPO)
+### 🔵 PPO – Deep Reinforcement Learning
 
 * Algoritmo: Proximal Policy Optimization (PPO)
 * Policy: CNN (CnnPolicy)
-* Input: frame di gioco preprocessati (grayscale, resize, frame stacking)
-* Reward basata su esplorazione, progresso nel livello e penalità
+* Input: frame preprocessati (grayscale, resize, frame stacking)
+* Reward progettata per incentivare avanzamento e completamento del livello
 
-I dettagli tecnici e le istruzioni di esecuzione sono disponibili nella cartella `notebooks/IA_1` (branch `ia_1`).
+Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
+
+```
+PPO_model
+```
 
 ---
 
-### Pipeline 2 – Neuroevoluzione (NEAT)
+### 🟣 NEAT – Neuroevoluzione
 
 * Algoritmo: NEAT (NeuroEvolution of Augmenting Topologies)
 * Evoluzione di pesi e topologia della rete neurale
 * Fitness basata sulla distanza percorsa (x_pos)
 * Speciazione, elitismo e stagnazione configurati esplicitamente
-* Configurazione potenzialmente estendibile a più livelli
 
-Nel contesto di questo progetto, la pipeline è stata integrata e valutata sul solo livello 1-1 di Super Mario Bros.
+Questa pipeline è stata integrata e valutata sul livello 1-1.
 
-I dettagli tecnici e le istruzioni di esecuzione sono disponibili nella cartella `notebooks/IA_2` (branch `ia_2`).
+Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
+
+```
+NEAT_model
+```
 
 ---
 
@@ -52,25 +59,24 @@ Le pipeline vengono confrontate utilizzando metriche comuni, tra cui:
 
 * distanza percorsa sull’asse orizzontale (x_pos)
 * completamento del livello (bandiera finale)
-* andamento dell’apprendimento (TensorBoard per PPO, `avg_fitness.svg` per NEAT)
+* andamento dell’apprendimento (TensorBoard per PPO)
+* evoluzione della fitness media (`avg_fitness.svg` per NEAT)
 * costi computazionali e tempo di training
 
-I risultati e i grafici finali sono riportati nella documentazione.
+L’analisi completa è riportata nella documentazione.
 
 ---
 
-## 📁 Struttura della repository
+## 📁 Struttura della repository (branch `main`)
 
 ```text
 Super-FIA-Bros/
 ├── README.md
 ├── docs/
-├── rl_model/
-├── neat_model/
 └── notebooks/
-    ├── IA_1/
-    └── IA_2/
 ```
+
+Le implementazioni specifiche dei modelli sono separate nei branch dedicati.
 
 ---
 
@@ -86,10 +92,13 @@ docs/
 
 ## ▶️ Riproducibilità
 
-Per riprodurre gli esperimenti:
+Per esplorare le implementazioni:
 
-1. selezionare la pipeline di interesse (`IA_1` o `IA_2`)
-2. seguire le istruzioni riportate nei notebook e nei file di supporto presenti nelle rispettive cartelle
+1. Passare al branch di interesse:
+
+   * `PPO_model`
+   * `NEAT_model`
+2. Seguire le istruzioni presenti nei file e nei notebook del branch selezionato.
 
 ---
 
@@ -98,5 +107,3 @@ Per riprodurre gli esperimenti:
 * [Luca Afeltra](https://github.com/luca-afe)
 * [Matteo De Stasio](https://github.com/Matteo-d-s)
 * [Marianna Diograzia](https://github.com/Erym35)
-
----
