@@ -44,7 +44,7 @@ initial_connection      = unconnected
 node_add_prob           = 0.25
 node_delete_prob        = 0.1
 
-# network parameters
+# network parameters 
 num_hidden              = 10
 num_inputs              = 208
 num_outputs             = 7
