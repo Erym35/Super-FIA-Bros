@@ -1,24 +1,25 @@
-# Super Mario Bros RL – PPO Agent
+# Super-FIA-Bros
 
 ## 📋 Descrizione
 
-Questo progetto implementa un agente di **Reinforcement Learning (RL)** capace di imparare a giocare a **Super Mario Bros (NES)** utilizzando l’algoritmo **PPO (Proximal Policy Optimization)**.
+**Super-FIA-Bros** è un progetto sviluppato per il corso di **Fondamenti di Intelligenza Artificiale** che analizza e confronta due approcci di IA applicati a un ambiente dinamico e sequenziale: **Super Mario Bros** (livello 1-1), emulato tramite il framework `gym-super-mario-bros`.
 
-Il progetto è configurato per funzionare su **Windows 11**, superando le limitazioni di compatibilità delle librerie `nes-py` e `gym` tramite un ambiente **Python 3.11** specifico.
+Il progetto studia il comportamento di un **agente intelligente** che, a partire da input visivo e con un insieme di azioni discrete, deve avanzare nel livello fino al suo completamento.
 
+---
 
-## ⚙️ Prerequisiti
+## 🎯 Obiettivo
 
 Realizzare un agente in grado di **completare il livello 1-1 di Super Mario Bros**, confrontando due pipeline algoritmiche differenti e analizzandone:
 
-### Visual Studio Build Tools
+* prestazioni
+* stabilità dell’apprendimento
+* costi computazionali
+* trade-off tra approcci
 
-Necessari per compilare i componenti C++ dell’emulatore.
-Durante l’installazione selezionare il carico di lavoro:
+---
 
-* **Sviluppo desktop con C++**
-
-### Python 3.11.x
+## 🧠 Pipeline implementate
 
 ### 🔵 PPO – Deep Reinforcement Learning
 
@@ -52,38 +53,9 @@ NEAT_model
 
 ---
 
-### 2️⃣ Attivazione
+## 📊 Valutazione e Trade-off
 
-Attiva l'ambiente virtuale:
-
-```powershell
-.\mario_311\Scripts\activate
-```
-
----
-
-### 3️⃣ Installazione Dipendenze
-
-L’ordine di installazione è **critico** per evitare conflitti su Windows. Esegui i comandi in sequenza:
-
-#### A. Setup compilatori e compatibilità
-
-```powershell
-pip install setuptools==65.5.0 wheel<0.40.0
-```
-
-#### B. Emulatore e ambiente di gioco
-
-```powershell
-pip install nes-py
-pip install gym_super_mario_bros==7.4.0
-```
-
-#### C. Librerie di Reinforcement Learning
-
-```powershell
-pip install gymnasium stable-baselines3[extra] shimmy
-```
+Le pipeline vengono confrontate utilizzando metriche comuni, tra cui:
 
 * distanza percorsa sull’asse orizzontale (x_pos)
 * completamento del livello (bandiera finale)
@@ -108,52 +80,17 @@ Le implementazioni specifiche dei modelli sono separate nei branch dedicati.
 
 ---
 
-## 🧠 Struttura del Training
+## 📄 Documentazione
 
-Una volta aperto Jupyter Lab, creare un nuovo notebook selezionando il kernel **Python (Mario 3.11)**.
-Il flusso di lavoro è suddiviso in quattro celle logiche:
+La documentazione completa del progetto (definizione del problema, specifica PEAS, descrizione delle pipeline, preprocessing, valutazione e conclusioni) è disponibile nella cartella:
 
-* **Import**: caricamento delle librerie (`gym`, `stable_baselines3`, `cv2`).
-* **Preprocessing (Wrappers)**: conversione in scala di grigi (84×84).
-* **Frame Stacking**: utilizzo di 4 frame consecutivi per percepire movimento e velocità.
-* **Definizione Modello**: utilizzo di PPO (`CnnPolicy`) con iperparametri ottimizzati.
-
-Setup cartelle per i log:
-
-```python
-tensorboard_log = "./logs/"
 ```
-
-Training loop:
-
-```python
-model.learn(total_timesteps=1000000)
+docs/
 ```
-
-(con salvataggio periodico dei checkpoint)
 
 ---
 
-## 📈 TensorBoard
-
-Per visualizzare i grafici di apprendimento (aumento del Reward, diminuzione della Loss, ecc.) in tempo reale, mentre L'IA si allena:
-
-1. Aprire un nuovo terminale PowerShell (lasciando quello del training in esecuzione);
-2. Attivare l’ambiente virtuale;
-3. Eseguire il comando puntando alla cartella dei log:
-
-```powershell
-tensorboard --logdir=./logs/
-```
-
-Aprire il browser all’indirizzo indicato (solitamente `http://localhost:6006`).
-
----
-
-## 🛑 Risoluzione Problemi Comuni
-
-**Errore: “Microsoft Visual C++ 14.0 is required”**
-Verificare di aver installato i Build Tools (punto 1 dei Prerequisiti).
+## ▶️ Riproducibilità
 
 Per esplorare le implementazioni:
 
@@ -165,7 +102,7 @@ Per esplorare le implementazioni:
 
 ---
 
-## ℹ️ Note Finali
+## 👥 Autori
 
 * [Luca Afeltra](https://github.com/luca-afe)
 * [Matteo De Stasio](https://github.com/Matteo-d-s)
