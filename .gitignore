@@ -1,1 +1,7 @@
 __pycache__/
+*.pyc
+.DS_Store
+checkpoints/
+videos/
+*.pkl
+generate_git_repository.py

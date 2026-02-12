@@ -9,7 +9,7 @@ Il progetto è configurato per funzionare su **Windows 11**, superando le limita
 
 ## ⚙️ Prerequisiti
 
-Prima di configurare l’ambiente virtuale, assicurati di avere installato:
+Realizzare un agente in grado di **completare il livello 1-1 di Super Mario Bros**, confrontando due pipeline algoritmiche differenti e analizzandone:
 
 ### Visual Studio Build Tools
 
@@ -20,28 +20,34 @@ Durante l’installazione selezionare il carico di lavoro:
 
 ### Python 3.11.x
 
-* Le versioni più recenti (3.12 / 3.13) **non sono compatibili** con `nes-py`
-* Si consiglia l’installazione in un percorso semplice (es. `C:\Python311`)
+### 🔵 PPO – Deep Reinforcement Learning
 
-### PowerShell Execution Policy
+* Algoritmo: Proximal Policy Optimization (PPO)
+* Policy: CNN (CnnPolicy)
+* Input: frame preprocessati (grayscale, resize, frame stacking)
+* Reward progettata per incentivare avanzamento e completamento del livello
 
-Abilitare l’esecuzione degli script aprendo PowerShell come amministratore ed eseguendo:
+Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
 
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+PPO_model
 ```
 
 ---
 
-## 🛠️ Installazione e Setup
+### 🟣 NEAT – Neuroevoluzione
 
-### 1️⃣ Creazione dell’Ambiente Virtuale
+* Algoritmo: NEAT (NeuroEvolution of Augmenting Topologies)
+* Evoluzione di pesi e topologia della rete neurale
+* Fitness basata sulla distanza percorsa (x_pos)
+* Speciazione, elitismo e stagnazione configurati esplicitamente
 
-Poiché nel sistema potrebbero essere presenti più versioni di Python, viene forzato l’uso di Python 3.11. Sostituisci il percorso con quello della tua installazione.
+Questa pipeline è stata integrata e valutata sul livello 1-1.
 
-```powershell
-cd C:\Users\nome_utente\Desktop\marioia
-"C:\Percorso\A\Python311\python.exe" -m venv mario_311
+Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
+
+```
+NEAT_model
 ```
 
 ---
@@ -79,29 +85,26 @@ pip install gym_super_mario_bros==7.4.0
 pip install gymnasium stable-baselines3[extra] shimmy
 ```
 
-#### D. Jupyter Lab e Kernel
+* distanza percorsa sull’asse orizzontale (x_pos)
+* completamento del livello (bandiera finale)
+* andamento dell’apprendimento (TensorBoard per PPO)
+* evoluzione della fitness media (`avg_fitness.svg` per NEAT)
+* costi computazionali e tempo di training
 
-```powershell
-pip install jupyterlab ipykernel
-```
+L’analisi completa è riportata nella documentazione.
 
 ---
 
-## 🚀 Avvio dell’Ambiente di Sviluppo
+## 📁 Struttura della repository (branch `main`)
 
-Per lavorare comodamente via browser con i Notebook interattivi, registra il Kernel (per renderlo visibile a Jupyter):
-
-### Registrazione del Kernel
-
-```powershell
-python -m ipykernel install --user --name=mario_311 --display-name "Python (Mario 3.11)"
+```text
+Super-FIA-Bros/
+├── README.md
+├── docs/
+└── notebooks/
 ```
 
-### Avvio Jupyter Lab
-
-```powershell
-python -m jupyterlab
-```
+Le implementazioni specifiche dei modelli sono separate nei branch dedicati.
 
 ---
 
@@ -152,17 +155,18 @@ Aprire il browser all’indirizzo indicato (solitamente `http://localhost:6006`)
 **Errore: “Microsoft Visual C++ 14.0 is required”**
 Verificare di aver installato i Build Tools (punto 1 dei Prerequisiti).
 
-**Errore import `gym_super_mario_bros`**
-Assicurarsi di aver installato prima `nes-py` e poi `gym_super_mario_bros`.
+Per esplorare le implementazioni:
 
-**Jupyter non trova le librerie**
-Controllare in alto a destra nel notebook che il kernel selezionato sia impostato su **Python (Mario 3.11)** e non quello globale **Python 3 (Global)**.
+1. Passare al branch di interesse:
+
+   * `PPO_model`
+   * `NEAT_model`
+2. Seguire le istruzioni presenti nei file e nei notebook del branch selezionato.
 
 ---
 
 ## ℹ️ Note Finali
 
-Progetto configurato e sviluppato su **Windows 11**.
-Ultimo aggiornamento: **Gennaio 2026**.
-
----
+* [Luca Afeltra](https://github.com/luca-afe)
+* [Matteo De Stasio](https://github.com/Matteo-d-s)
+* [Marianna Diograzia](https://github.com/Erym35)
