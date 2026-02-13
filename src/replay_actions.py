@@ -29,11 +29,12 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description='Replay best actions')
     parser.add_argument('--level', type=str, default='1-1', help='Level to replay (e.g. 1-1, 1-2)')
+    parser.add_argument('--file', type=str, default='best_actions.pkl', help='Name of the action file (default: best_actions.pkl)')
     args = parser.parse_args()
 
     # Paths
     local_dir = os.path.dirname(__file__)
-    actions_path = os.path.join(local_dir, 'best_actions.pkl')
+    actions_path = os.path.join(local_dir, args.file)
     video_dir = os.path.join(local_dir, 'videos')
     os.makedirs(video_dir, exist_ok=True)
     video_output_path = os.path.join(video_dir, f'mario_replay_{args.level}.mp4')
