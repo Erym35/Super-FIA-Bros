@@ -13,6 +13,57 @@ import train
 
 gym.logger.set_level(40)
 
+# FIX: Register custom activations and mock missing modules for old checkpoints
+import sys
+import types
+from neat.activations import ActivationFunctionSet
+
+# 1. Custom Activations
+def elu_activation(z):
+    return z if z > 0.0 else (np.exp(z) - 1)
+
+def lelu_activation(z):
+    leaky = 0.005
+    return z if z > 0.0 else leaky * z
+
+def selu_activation(z):
+    lam = 1.0507
+    alpha = 1.67326
+    return lam * z if z > 0.0 else lam * alpha * (np.exp(z) - 1)
+
+try:
+    import neat.activations
+    for name, func in [('elu_activation', elu_activation), 
+                       ('lelu_activation', lelu_activation), 
+                       ('selu_activation', selu_activation)]:
+        if not hasattr(neat.activations, name):
+            setattr(neat.activations, name, func)
+except Exception as e:
+    print(f"Warning: Could not register custom activations: {e}")
+
+# 2. Mock missing modules (e.g. neat.innovation used in some custom NEAT forks)
+try:
+    if 'neat.innovation' not in sys.modules:
+        mock_innovation = types.ModuleType('neat.innovation')
+        sys.modules['neat.innovation'] = mock_innovation
+        # Add 'Innovation' class if it was used in pickle
+        class MockInnovation:
+            pass
+        mock_innovation.Innovation = MockInnovation
+        
+        # Add 'InnovationTracker' class (Common in some NEAT forks)
+        class MockInnovationTracker:
+            pass
+        mock_innovation.InnovationTracker = MockInnovationTracker
+        
+    if 'neat.genes' not in sys.modules:
+        # Some old versions/forks separate genes differently
+        import neat.genome
+        sys.modules['neat.genes'] = neat.genome
+        
+except Exception as e:
+    print(f"Warning: Could not mock missing modules: {e}")
+
 
 import copy
 import signal
