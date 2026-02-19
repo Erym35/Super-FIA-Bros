@@ -9,8 +9,6 @@ Il progetto è configurato per funzionare su **Windows 11**, superando le limita
 
 ## ⚙️ Prerequisiti
 
-Realizzare un agente in grado di **completare il livello 1-1 di Super Mario Bros**, confrontando due pipeline algoritmiche differenti e analizzandone:
-
 ### Visual Studio Build Tools
 
 Necessari per compilare i componenti C++ dell’emulatore.
