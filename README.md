@@ -20,38 +20,6 @@ Durante l’installazione selezionare il carico di lavoro:
 
 ### Python 3.11.x
 
-### 🔵 PPO – Deep Reinforcement Learning
-
-* Algoritmo: Proximal Policy Optimization (PPO)
-* Policy: CNN (CnnPolicy)
-* Input: frame preprocessati (grayscale, resize, frame stacking)
-* Reward progettata per incentivare avanzamento e completamento del livello
-
-Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
-
-```
-PPO_model
-```
-
----
-
-### 🟣 NEAT – Neuroevoluzione
-
-* Algoritmo: NEAT (NeuroEvolution of Augmenting Topologies)
-* Evoluzione di pesi e topologia della rete neurale
-* Fitness basata sulla distanza percorsa (x_pos)
-* Speciazione, elitismo e stagnazione configurati esplicitamente
-
-Questa pipeline è stata integrata e valutata sul livello 1-1.
-
-Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
-
-```
-NEAT_model
-```
-
----
-
 ### 2️⃣ Attivazione
 
 Attiva l'ambiente virtuale:
