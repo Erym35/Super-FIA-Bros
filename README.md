@@ -1,96 +1,69 @@
-# Super-FIA-Bros
+# 🍄 Super-FIA-Man (NEAT Pipeline)
 
-## 📋 Descrizione
-
-**Super-FIA-Bros** è un progetto sviluppato per il corso di **Fondamenti di Intelligenza Artificiale** che analizza e confronta due approcci di IA applicati a un ambiente dinamico e sequenziale: **Super Mario Bros**, emulato tramite il framework `gym-super-mario-bros`.
-
-Il progetto studia il comportamento di un **agente intelligente** che, a partire da input visivo e con un insieme di azioni discrete, deve avanzare nel livello fino al suo completamento.
+Questo branch (`NEAT_model`) contiene l'implementazione completa dell'agente basato sull'algoritmo genetico **NEAT (NeuroEvolution of Augmenting Topologies)** per il completamento del livello 1-1 di Super Mario Bros.
 
 ---
 
-## 🎯 Obiettivo
+## 🚀 Guida alla Riproducibilità
 
-Realizzare un agente in grado di **completare il livello 1-1 di Super Mario Bros**, confrontando due pipeline algoritmiche differenti e analizzandone:
+L'intero processo di training, validazione e visualizzazione è stato progettato per essere eseguito su **Google Colab** per garantire la massima compatibilità e facilità d'uso.
 
-* prestazioni
-* stabilità dell’apprendimento
-* costi computazionali
-* trade-off tra approcci
+### 1. 📂 Entry Point
+Il file principale per riprodurre il progetto è il notebook:
+👉 **[SuperMarioBros_Colab.ipynb](SuperMarioBros_Colab.ipynb)**
 
----
+### 2. ▶️ Come Eseguire
+1.  Apri il file `SuperMarioBros_Colab.ipynb` caricandolo su Google Colab o aprendolo localmente se hai un ambiente Jupyter con GPU.
+2.  **Esegui tutte le celle in sequenza**. Il notebook si occuperà automaticamente di:
+    *   Clonare questo repository.
+    *   Installare le dipendenze corrette (incluso il downgrade di `numpy` necessario per `gym-super-mario-bros`).
+    *   Scaricare i checkpoint pre-addestrati.
 
-## 🧠 Pipeline implementate
+### 3. 🏋️‍♂️ Modalità di Esecuzione
+All'interno del notebook (e tramite gli script nella cartella `src/`) sono disponibili tre modalità principali:
 
-### 🔵 PPO – Deep Reinforcement Learning
+*   **Training da Zero:**
+    Avvia una nuova evoluzione partendo dalla generazione 0.
+    ```bash
+    python src/main.py train --gen 100 --level 1-1
+    ```
 
-* Algoritmo: Proximal Policy Optimization (PPO)
-* Policy: CNN (CnnPolicy)
-* Input: frame preprocessati (grayscale, resize, frame stacking)
-* Reward progettata per incentivare avanzamento e completamento del livello
+*   **Continuous Training (Consigliato):**
+    Riprende l'addestramento dall'ultimo checkpoint salvato, mantenendo la "memoria" della specie.
+    ```bash
+    python src/cont_train.py
+    ```
 
-Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
-
-```
-PPO_model
-```
-
----
-
-### 🟣 NEAT – Neuroevoluzione
-
-* Algoritmo: NEAT (NeuroEvolution of Augmenting Topologies)
-* Evoluzione di pesi e topologia della rete neurale
-* Fitness basata sulla distanza percorsa (x_pos)
-* Speciazione, elitismo e stagnazione configurati esplicitamente
-
-Questa pipeline è stata integrata e valutata sul livello 1-1.
-
-Il codice e i risultati relativi a questa pipeline sono disponibili nel branch:
-
-```
-NEAT_model
-```
+*   **Replay del Campione:**
+    Visualizza e salva in video (`.mp4`) la performance del miglior genoma (il "vincitore").
+    ```bash
+    python src/replay_actions.py --level 1-1
+    ```
 
 ---
 
-## 📊 Valutazione e Trade-off
+## 🧠 Struttura del Progetto
 
-Le pipeline vengono confrontate utilizzando metriche comuni, tra cui:
+Il codice sorgente è organizzato nella cartella `src/`:
 
-* distanza percorsa sull’asse orizzontale (x_pos)
-* completamento del livello (bandiera finale)
-* andamento dell’apprendimento (TensorBoard per PPO)
-* evoluzione della fitness media (`avg_fitness.svg` per NEAT)
-* costi computazionali e tempo di training
-
-L’analisi completa è riportata nella documentazione.
-
----
-
-## 📄 Documentazione
-
-La documentazione completa del progetto (definizione del problema, specifica PEAS, descrizione delle pipeline, preprocessing, valutazione e conclusioni) è disponibile nella cartella:
-
-```
-docs/
-```
+| File | Descrizione |
+| :--- | :--- |
+| `src/config` | File di configurazione NEAT (iperparametri, mutazioni, popolazione). |
+| `src/train.py` | Logica principale del training (valutazione genomi, parallelizzazione). |
+| `src/cont_train.py` | Script per riprendere il training da checkpoint esistenti. |
+| `src/replay_actions.py` | Genera video delle migliori run con overlay HUD. |
+| `src/visualize.py` | Genera grafici dell’andamento del fitness e topologia della rete. |
+| `src/main.py` | Wrapper principale per gestire i comandi da riga di comando. |
 
 ---
 
-## ▶️ Riproducibilità
+## 🌿 Struttura dei Branch
 
-Per esplorare le implementazioni:
-
-1. Passare al branch di interesse:
-
-   * `PPO_model`
-   * `NEAT_model`
-2. Seguire le istruzioni presenti nei file e nei notebook del branch selezionato.
+*   **`main` / `NEAT_model`**: Contiene l'implementazione NEAT stabile e completa (questo branch).
 
 ---
 
 ## 👥 Autori
 
-* [Luca Afeltra](https://github.com/luca-afe)
-* [Matteo De Stasio](https://github.com/Matteo-d-s)
-* [Marianna Diograzia](https://github.com/Erym35)
+*   [Luca Afeltra](https://github.com/luca-afe)
+*   [Marianna Diograzia](https://github.com/Erym35)
