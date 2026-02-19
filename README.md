@@ -2,7 +2,7 @@
 
 ## 📋 Descrizione
 
-**Super-FIA-Bros** è un progetto sviluppato per il corso di **Fondamenti di Intelligenza Artificiale** che analizza e confronta due approcci di IA applicati a un ambiente dinamico e sequenziale: **Super Mario Bros** (livello 1-1), emulato tramite il framework `gym-super-mario-bros`.
+**Super-FIA-Bros** è un progetto sviluppato per il corso di **Fondamenti di Intelligenza Artificiale** che analizza e confronta due approcci di IA applicati a un ambiente dinamico e sequenziale: **Super Mario Bros**, emulato tramite il framework `gym-super-mario-bros`.
 
 Il progetto studia il comportamento di un **agente intelligente** che, a partire da input visivo e con un insieme di azioni discrete, deve avanzare nel livello fino al suo completamento.
 
@@ -64,19 +64,6 @@ Le pipeline vengono confrontate utilizzando metriche comuni, tra cui:
 * costi computazionali e tempo di training
 
 L’analisi completa è riportata nella documentazione.
-
----
-
-## 📁 Struttura della repository (branch `main`)
-
-```text
-Super-FIA-Bros/
-├── README.md
-├── docs/
-└── notebooks/
-```
-
-Le implementazioni specifiche dei modelli sono separate nei branch dedicati.
 
 ---
 
