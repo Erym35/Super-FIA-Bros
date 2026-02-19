@@ -1,4 +1,4 @@
-# 🍄 Super-FIA-Man (NEAT Pipeline)
+# 🍄 Super-FIA-Bros (NEAT Pipeline)
 
 Questo branch (`NEAT_model`) contiene l'implementazione completa dell'agente basato sull'algoritmo genetico **NEAT (NeuroEvolution of Augmenting Topologies)** per il completamento del livello 1-1 di Super Mario Bros.
 
@@ -66,4 +66,5 @@ Il codice sorgente è organizzato nella cartella `src/`:
 ## 👥 Autori
 
 *   [Luca Afeltra](https://github.com/luca-afe)
+*   [Matteo De Stasio](https://github.com/Matteo-d-s)
 *   [Marianna Diograzia](https://github.com/Erym35)
